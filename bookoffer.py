@@ -9,6 +9,7 @@ The book of the day in https://www.packtpub.com/packt/offers/free-learning/
 '''
 import urllib2
 from bs4 import BeautifulSoup
+import subprocess
 
 class Book(object):
     # baixar-se la web
@@ -31,8 +32,7 @@ class Book(object):
     def main(self):
         web = self.get_web('https://www.packtpub.com/packt/offers/free-learning/')
         title = self.search_title(web)
-        # FIXME: imprimir resultats
-        print title
+        subprocess.Popen(["notify-send", "Free ebook of  today: " + title]) #imprimeix el title via notificacio
 
 if __name__ == '__main__':
 
