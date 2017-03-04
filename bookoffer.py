@@ -18,9 +18,21 @@ class Book(object):
        f.close()
        return html
 
+    # TODO: buscar el text
+    def search_title(self, html):
+        soup = BeautifulSoup(html, 'html.parser')
+        ptitle = soup.find_all("div", "dotd-title")
+
+        for element in ptitle:
+            title = element.find("h2").text
+
+        return title.strip() #strip() elimina /t del title que estan als dos extrems daquest
+
     def main(self):
         web = self.get_web('https://www.packtpub.com/packt/offers/free-learning/')
-        print web
+        title = self.search_title(web)
+        # FIXME: imprimir resultats
+        print title
 
 if __name__ == '__main__':
 
